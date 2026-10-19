@@ -1,0 +1,39 @@
++------------------------------------------+
+|               Transaction                |
++------------------------------------------+
+| + type: string                           |
+| + amount: double                         |
+| + timestamp: string                      |
++------------------------------------------+
+| + Transaction(type: string, ... )        |
+| + print(): void                          |
++------------------------------------------+
+                     ^
+                     |  (Composition: Solid line with 
+                     *   FILLED diamond at BankAccount)
++------------------------------------------+
+|               BankAccount                |
++------------------------------------------+
+| - accountNumber: string                  |
+| - balance: double                        |
+| - transactionHistory: vector<Transaction>|
++------------------------------------------+
+| + BankAccount(accNum: string, bal: double|
+| + virtual ~BankAccount()                 |
+| + deposit(amount: double): void          |
+| + virtual withdraw(amount: double): bool |
+| + getBalance(): double                   |
+| + getAccountNumber(): string             |
+| + printHistory(): void                   |
++------------------------------------------+
+          ^                      ^
+          |                      |   (Inheritance: Solid line with 
+          |                      |    HOLLOW closed arrowhead)
++----------------------+  +-----------------------------+
+|   CheckingAccount    |  |       SavingsAccount        |
++----------------------+  +-----------------------------+
+| - overdraftFee: double|  | - interestRate: double      |
++----------------------+  +-----------------------------+
+| + CheckingAccount(...) |  | + SavingsAccount(...)       |
+| + withdraw(...): bool|  | + applyInterest(): void     |
++----------------------+  +-----------------------------+
